@@ -27,6 +27,7 @@
 #include "mcc_generated_files/mcc.h"
 #include "misc.h"
 #include "global_defs.h"
+#include "lcd.h"
 
 
 /* ************************************************************************** */
@@ -214,6 +215,16 @@ void DoHeartBeat()
     {
         Heartbeat_tmr = GetSysTick(); // get new time val
         LED_Toggle(); // Toggle error light
+        if(LED_GetValue())
+        {
+            LCD_DisplayString("Hello World");
+            LCD_SetPos(2,4);
+            LCD_DisplayString("Indent Line");
+        }
+        else
+        {
+            LCD_Clear();
+        }
     } // End LED Beat
     
 }  // end heartbeat

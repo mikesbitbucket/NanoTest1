@@ -44,6 +44,7 @@
 #include "mcc_generated_files/mcc.h"
 #include "global_defs.h"
 #include "misc.h"
+#include "lcd.h"
 
 uint8_t i,j;
 uint16_t int_i, int_j;
@@ -66,6 +67,8 @@ void main(void)
     TMR0_SetInterruptHandler(IncSysTick);  // Register the Systimer Handler
     TMR0_StartTimer(); // start the systimer
     
+    LCD_Init();
+    
     
     // Disable the Global Interrupts
     //INTERRUPT_GlobalInterruptDisable();
@@ -82,7 +85,8 @@ void main(void)
             j++;
             i=0;
         }
-    }
+        
+    } // end while 1
 }
 /**
  End of File

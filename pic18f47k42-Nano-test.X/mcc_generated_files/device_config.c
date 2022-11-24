@@ -51,7 +51,7 @@
 #pragma config RSTOSC = HFINTOSC_64MHZ    // Reset Oscillator Selection->HFINTOSC with HFFRQ = 64 MHz and CDIV = 1:1
 
 // CONFIG1H
-#pragma config CLKOUTEN = ON    // Clock out Enable bit->CLKOUT function is enabled
+#pragma config CLKOUTEN = OFF    // Clock out Enable bit->CLKOUT function is disabled
 #pragma config PR1WAY = ON    // PRLOCKED One-Way Set Enable bit->PRLOCK bit can be cleared and set only once
 #pragma config CSWEN = ON    // Clock Switch Enable bit->Writing to NOSC and NDIV is allowed
 #pragma config FCMEN = ON    // Fail-Safe Clock Monitor Enable bit->Fail-Safe Clock Monitor enabled
