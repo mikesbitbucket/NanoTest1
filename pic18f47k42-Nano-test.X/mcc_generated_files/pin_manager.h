@@ -225,6 +225,46 @@
 #define RA7_SetAnalogMode()      do { ANSELAbits.ANSELA7 = 1; } while(0)
 #define RA7_SetDigitalMode()     do { ANSELAbits.ANSELA7 = 0; } while(0)
 
+// get/set BACKPWR aliases
+#define BACKPWR_TRIS                 TRISDbits.TRISD2
+#define BACKPWR_LAT                  LATDbits.LATD2
+#define BACKPWR_PORT                 PORTDbits.RD2
+#define BACKPWR_WPU                  WPUDbits.WPUD2
+#define BACKPWR_OD                   ODCONDbits.ODCD2
+#define BACKPWR_ANS                  ANSELDbits.ANSELD2
+#define BACKPWR_SetHigh()            do { LATDbits.LATD2 = 1; } while(0)
+#define BACKPWR_SetLow()             do { LATDbits.LATD2 = 0; } while(0)
+#define BACKPWR_Toggle()             do { LATDbits.LATD2 = ~LATDbits.LATD2; } while(0)
+#define BACKPWR_GetValue()           PORTDbits.RD2
+#define BACKPWR_SetDigitalInput()    do { TRISDbits.TRISD2 = 1; } while(0)
+#define BACKPWR_SetDigitalOutput()   do { TRISDbits.TRISD2 = 0; } while(0)
+#define BACKPWR_SetPullup()          do { WPUDbits.WPUD2 = 1; } while(0)
+#define BACKPWR_ResetPullup()        do { WPUDbits.WPUD2 = 0; } while(0)
+#define BACKPWR_SetPushPull()        do { ODCONDbits.ODCD2 = 0; } while(0)
+#define BACKPWR_SetOpenDrain()       do { ODCONDbits.ODCD2 = 1; } while(0)
+#define BACKPWR_SetAnalogMode()      do { ANSELDbits.ANSELD2 = 1; } while(0)
+#define BACKPWR_SetDigitalMode()     do { ANSELDbits.ANSELD2 = 0; } while(0)
+
+// get/set LCDPWR aliases
+#define LCDPWR_TRIS                 TRISDbits.TRISD3
+#define LCDPWR_LAT                  LATDbits.LATD3
+#define LCDPWR_PORT                 PORTDbits.RD3
+#define LCDPWR_WPU                  WPUDbits.WPUD3
+#define LCDPWR_OD                   ODCONDbits.ODCD3
+#define LCDPWR_ANS                  ANSELDbits.ANSELD3
+#define LCDPWR_SetHigh()            do { LATDbits.LATD3 = 1; } while(0)
+#define LCDPWR_SetLow()             do { LATDbits.LATD3 = 0; } while(0)
+#define LCDPWR_Toggle()             do { LATDbits.LATD3 = ~LATDbits.LATD3; } while(0)
+#define LCDPWR_GetValue()           PORTDbits.RD3
+#define LCDPWR_SetDigitalInput()    do { TRISDbits.TRISD3 = 1; } while(0)
+#define LCDPWR_SetDigitalOutput()   do { TRISDbits.TRISD3 = 0; } while(0)
+#define LCDPWR_SetPullup()          do { WPUDbits.WPUD3 = 1; } while(0)
+#define LCDPWR_ResetPullup()        do { WPUDbits.WPUD3 = 0; } while(0)
+#define LCDPWR_SetPushPull()        do { ODCONDbits.ODCD3 = 0; } while(0)
+#define LCDPWR_SetOpenDrain()       do { ODCONDbits.ODCD3 = 1; } while(0)
+#define LCDPWR_SetAnalogMode()      do { ANSELDbits.ANSELD3 = 1; } while(0)
+#define LCDPWR_SetDigitalMode()     do { ANSELDbits.ANSELD3 = 0; } while(0)
+
 // get/set LCD_RS aliases
 #define LCD_RS_TRIS                 TRISDbits.TRISD5
 #define LCD_RS_LAT                  LATDbits.LATD5

@@ -16,6 +16,7 @@
       <itemPath>global_defs.h</itemPath>
       <itemPath>misc.h</itemPath>
       <itemPath>lcd.h</itemPath>
+      <itemPath>buttons.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -36,6 +37,7 @@
       <itemPath>main.c</itemPath>
       <itemPath>misc.c</itemPath>
       <itemPath>lcd.c</itemPath>
+      <itemPath>buttons.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

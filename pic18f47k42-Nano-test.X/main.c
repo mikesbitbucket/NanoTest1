@@ -67,6 +67,12 @@ void main(void)
     TMR0_SetInterruptHandler(IncSysTick);  // Register the Systimer Handler
     TMR0_StartTimer(); // start the systimer
     
+    __delay_ms(1000); // wait 1 second for USB to init and deliver power
+    LCDPWR_SetHigh(); // turn on power
+    __delay_ms(100); //wait a bit for LCD to come up
+    BACKPWR_SetHigh();
+    __delay_ms(100);
+    
     LCD_Init();
     
     

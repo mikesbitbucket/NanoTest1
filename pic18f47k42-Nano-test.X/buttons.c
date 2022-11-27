@@ -5,7 +5,7 @@
     SupraTech
 
   @File Name
-    misc.c
+    buttons.c
 
   @Summary
     Misc functions - timers, etc.
@@ -25,9 +25,9 @@
  */
 
 #include "mcc_generated_files/mcc.h"
-#include "misc.h"
+#include "buttons.h"
 #include "global_defs.h"
-#include "lcd.h"
+
 
 
 /* ************************************************************************** */
@@ -39,6 +39,13 @@
 /*  A brief description of a section can be given directly below the section
     banner.
  */
+
+
+/* NOTE
+ the defintion for debounce time, etc. are moved to global_defs.h
+ 
+ */
+
 
 /* ************************************************************************** */
 /** Descriptive Data Item Name
@@ -57,11 +64,6 @@
   @Remarks
     Any additional remarks
  */
-static uint16_t SysTick = 0;
-static uint16_t Heartbeat_tmr;
-static uint8_t LED_Heartbeat_tmr;
-static uint8_t HighVoltage_tmr = 0;
-static uint8_t PWMDuty;
 
 
 /* ************************************************************************** */
@@ -145,134 +147,25 @@ static uint8_t PWMDuty;
 
 /** 
   @Function
-    IncSysTick 
+ DoButtons
 
   @Summary
- Increments the System Tic
+ Calls all the buttons debounce routines, sets up for a call to them
 
   @Remarks
- In SysTic
- */
-void IncSysTick(void)
-{
-    SysTick++;
-}
-
-/** 
-  @Function
-    ClearSysTick 
-
-  @Summary
- Clears the System Tic
-
-  @Remarks
- Clear SysTic
- */
-void ClearSysTick(void)
-{
-    SysTick = 0;
-}
-
-// *****************************************************************************
-
-/** 
-  @Function
-    GetSysTick 
-
-  @Summary
-    Gets the current SysTick
-
-  @Remarks
-    Get and return current SysTick
- */
-uint16_t GetSysTick(void)
-{
-    uint16_t retval;
-
-    PIE3bits.TMR0IE = 0; // Shut off interrupt
-    retval = SysTick;
-    PIE3bits.TMR0IE = 1; // turn on interrupt
-    return retval;
-}
-
-// *****************************************************************************
-
-/** 
-  @Function
-    DoHeartBeat 
-
-  @Summary
- * Does any heartbeat related tasks - blink LED, etc
-
-  @Remarks
- *  Heartbeat Stuff
+ * this does not return any states, just runs the stuff to get the states
+ * This is expected to be called every xx ms - 
+ * Be sure to define the debounce time, etc at the top of this file
  */
 
-void DoHeartBeat()
+void DoButtons(void);
 {
-    // Heartbeat check
-    if((uint16_t)(GetSysTick() - Heartbeat_tmr) >= LED_HEARTBEAT_INTERVAL)
-    {
-        Heartbeat_tmr = GetSysTick(); // get new time val
-        LED_Toggle(); // Toggle error light
-        if(LED_GetValue())
-        {
-            static uint8_t i=1;
-            LCD_Clear();
-            LCD_DisplayString("Hello World");
-            LCD_SetPos(2,i);
-            i++;
-            if(i > 9) i=0;
-            LCD_DisplayString("Indent Line");
-        }
-        else
-        {
-            //LCD_Clear();
-        }
-    } // End LED Beat
+    // Call all the button handler routines
+    // See if enough tics have passed....
+    if((uint16_t)(GetSysTick() - button_tic_tmr) >= BUTTON_CHECK_INTERVAL)
     
-}  // end heartbeat
-    
-//    if(GetSysTick() != Heartbeat_tmr)  // this is simpler with 1 tick per heartbeat - Timer 0 is set to 10 ms
-//    {
-//        Heartbeat_tmr = GetSysTick(); // get new time val
-//        LED_Heartbeat_tmr++;
-//        if(LED_Heartbeat_tmr > LED_HEARTBEAT_INTERVAL)
-//        {
-//            LED_Toggle(); // Toggle error light
-//            LED_Heartbeat_tmr = 0;
-//        }
-//        HighVoltage_tmr++;
-//        if(HighVoltage_tmr > 100)  // Change duty every 1000ms
-//        {
-//            HighVoltage_tmr = 0;
-//            PWMDuty++;
-//            if(PWMDuty > 0x09) // Start back at 0
-//            {
-//                PWMDuty = 5;
-//            }
-//            PWM1S1P1L = PWMDuty;
-//            //PWM1_16BIT_SetSlice1Output1DutyCycleRegister(PWMDuty);
-//            PWM1_16BIT_LoadBufferRegisters(); // Load registers on next period
-//        } 
-//        if(HighVoltage_tmr > 100)
-//        {
-//            HighVoltage_tmr = 0;
-//            PWM1CON ^= 0x80; // Toggle enable bit   
-//            if(PWMDuty > 100)
-//            {
-//                PWMDuty = 200;  // Turn off for 2 seconds
-//                PWM1_16BIT_Disable();
-//            }
-//            else
-//            {
-//                PWMDuty = 1;  // Turn on for 10ms
-//                PWM1_16BIT_Enable();
-//            }
-            // PWM1CON ^= 0x80; // Toggle enable bit
-//        }
-        
-//    }  // end heartbeat
+}
+
 
 /* *****************************************************************************
  End of File
