@@ -2836,7 +2836,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RE2"/>
-         <value>SWITCH</value>
+         <value>PB1</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RE3"/>
@@ -9874,7 +9874,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files\pin_manager.h</file>
-         <hash>618e1da66f1cf39d4b23e318549b44b6ffc714bf130466adaff2198670f908f8</hash>
+         <hash>11c94a0040a0e65ae6bbe2cc8583878183ee2091d082f03c2a29171944a8afd8</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\interrupt_manager.c</file>

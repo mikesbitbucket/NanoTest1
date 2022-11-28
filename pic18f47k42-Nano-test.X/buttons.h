@@ -7,8 +7,8 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef MISC_H
-#define	MISC_H
+#ifndef BUTTONS_H
+#define	BUTTONS_H
 
 #include <xc.h> // include processor files - each processor file is guarded. 
 #include "global_defs.h"
@@ -47,11 +47,14 @@
 extern "C" {
 #endif /* __cplusplus */
 
+void DoButtons(void);
+void DoButton1(void);
+bool IsButton1Pressed(void);
 
 
 #ifdef	__cplusplus
 }
 #endif /* __cplusplus */
 
-#endif	/* MISC_H */
+#endif	/* BUTTONS_H */
 

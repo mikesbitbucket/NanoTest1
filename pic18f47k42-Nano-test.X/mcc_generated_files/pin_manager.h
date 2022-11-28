@@ -365,25 +365,25 @@
 #define TEST_SetAnalogMode()      do { ANSELEbits.ANSELE1 = 1; } while(0)
 #define TEST_SetDigitalMode()     do { ANSELEbits.ANSELE1 = 0; } while(0)
 
-// get/set SWITCH aliases
-#define SWITCH_TRIS                 TRISEbits.TRISE2
-#define SWITCH_LAT                  LATEbits.LATE2
-#define SWITCH_PORT                 PORTEbits.RE2
-#define SWITCH_WPU                  WPUEbits.WPUE2
-#define SWITCH_OD                   ODCONEbits.ODCE2
-#define SWITCH_ANS                  ANSELEbits.ANSELE2
-#define SWITCH_SetHigh()            do { LATEbits.LATE2 = 1; } while(0)
-#define SWITCH_SetLow()             do { LATEbits.LATE2 = 0; } while(0)
-#define SWITCH_Toggle()             do { LATEbits.LATE2 = ~LATEbits.LATE2; } while(0)
-#define SWITCH_GetValue()           PORTEbits.RE2
-#define SWITCH_SetDigitalInput()    do { TRISEbits.TRISE2 = 1; } while(0)
-#define SWITCH_SetDigitalOutput()   do { TRISEbits.TRISE2 = 0; } while(0)
-#define SWITCH_SetPullup()          do { WPUEbits.WPUE2 = 1; } while(0)
-#define SWITCH_ResetPullup()        do { WPUEbits.WPUE2 = 0; } while(0)
-#define SWITCH_SetPushPull()        do { ODCONEbits.ODCE2 = 0; } while(0)
-#define SWITCH_SetOpenDrain()       do { ODCONEbits.ODCE2 = 1; } while(0)
-#define SWITCH_SetAnalogMode()      do { ANSELEbits.ANSELE2 = 1; } while(0)
-#define SWITCH_SetDigitalMode()     do { ANSELEbits.ANSELE2 = 0; } while(0)
+// get/set PB1 aliases
+#define PB1_TRIS                 TRISEbits.TRISE2
+#define PB1_LAT                  LATEbits.LATE2
+#define PB1_PORT                 PORTEbits.RE2
+#define PB1_WPU                  WPUEbits.WPUE2
+#define PB1_OD                   ODCONEbits.ODCE2
+#define PB1_ANS                  ANSELEbits.ANSELE2
+#define PB1_SetHigh()            do { LATEbits.LATE2 = 1; } while(0)
+#define PB1_SetLow()             do { LATEbits.LATE2 = 0; } while(0)
+#define PB1_Toggle()             do { LATEbits.LATE2 = ~LATEbits.LATE2; } while(0)
+#define PB1_GetValue()           PORTEbits.RE2
+#define PB1_SetDigitalInput()    do { TRISEbits.TRISE2 = 1; } while(0)
+#define PB1_SetDigitalOutput()   do { TRISEbits.TRISE2 = 0; } while(0)
+#define PB1_SetPullup()          do { WPUEbits.WPUE2 = 1; } while(0)
+#define PB1_ResetPullup()        do { WPUEbits.WPUE2 = 0; } while(0)
+#define PB1_SetPushPull()        do { ODCONEbits.ODCE2 = 0; } while(0)
+#define PB1_SetOpenDrain()       do { ODCONEbits.ODCE2 = 1; } while(0)
+#define PB1_SetAnalogMode()      do { ANSELEbits.ANSELE2 = 1; } while(0)
+#define PB1_SetDigitalMode()     do { ANSELEbits.ANSELE2 = 0; } while(0)
 
 /**
    @Param

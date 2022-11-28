@@ -24,9 +24,11 @@
 /* This section lists the other files that are included in this file.
  */
 
-#include "mcc_generated_files/mcc.h"
-#include "buttons.h"
 #include "global_defs.h"
+#include "mcc_generated_files/mcc.h"
+#include "misc.h"
+#include "buttons.h"
+
 
 
 
@@ -64,6 +66,9 @@
   @Remarks
     Any additional remarks
  */
+
+uint16_t button_tic_tmr;
+static uint8_t Button1State = 0;
 
 
 /* ************************************************************************** */
@@ -158,12 +163,40 @@
  * Be sure to define the debounce time, etc at the top of this file
  */
 
-void DoButtons(void);
+void DoButtons(void)
 {
     // Call all the button handler routines
     // See if enough tics have passed....
-    if((uint16_t)(GetSysTick() - button_tic_tmr) >= BUTTON_CHECK_INTERVAL)
+    if((uint16_t)(GetSysTick() - button_tic_tmr) >= BUTTON_INTERVAL_CHECK)
+    {
+        button_tic_tmr = GetSysTick();  //get new value
+        // OK lets get the button status again
+        DoButton1();
+        //  add more buttons here
+    }
     
+}
+
+void DoButton1(void)
+{
+    // Check button 1 and get status loaded - Button 1 is '0' when pressed
+    // This will be called by the DoButtons routine
+    Button1State = (uint8_t)(Button1State << 1) | !PB1_GetValue();  // shift in the next bit
+}
+
+bool IsButton1Pressed(void)
+{
+    uint8_t temp;
+    temp = Button1State & (1<<(BUTTON_DEBOUNCE_INTERVAL - 1));  // mask the lower bits
+    temp = temp ^ (1<<(BUTTON_DEBOUNCE_INTERVAL - 1));   // if this is zero, we have continuous button press
+    return (0 == temp);
+}
+
+bool IsButton1Released(void)
+{
+    uint8_t temp = 0;
+    temp = Button1State & (1<<(BUTTON_DEBOUNCE_INTERVAL - 1));  // If button released, should be all zeros
+    return (0 == temp);
 }
 
 

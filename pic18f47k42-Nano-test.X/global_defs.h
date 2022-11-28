@@ -26,7 +26,8 @@ extern "C" {
     
 #define HEARTBEAT_INTERVAL  (0.01)  // seconds for interrupt from systick timer
 #define LED_HEARTBEAT_INTERVAL 50  // Interval for heartbeat tick - 50 = 500ms @ 10ms tick
-#define BUTTON_CHECK_INTERVAL   1  // we want to check the buttons every 10ms
+#define BUTTON_DEBOUNCE_INTERVAL   4  // Debouce time 4=40ms
+#define BUTTON_INTERVAL_CHECK   1 // How often to check the button, this goes with the above define to set the debounce time
     
 
 #ifdef	__cplusplus
