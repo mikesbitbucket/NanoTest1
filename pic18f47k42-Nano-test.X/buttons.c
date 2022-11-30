@@ -182,23 +182,40 @@ void DoButton1(void)
     // Check button 1 and get status loaded - Button 1 is '0' when pressed
     // This will be called by the DoButtons routine
     Button1State = (uint8_t)(Button1State << 1) | !PB1_GetValue();  // shift in the next bit
+    if(Button1State == BUTTON_DEBOUNCE_MASK)
+    {
+        // this is a transitions to pressed
+        if(Button1Pressed_InterruptHandler) // make sure we have something initialized
+        {
+            Button1Pressed_InterruptHandler(); // Handle the transition of not pressed to pressed
+        }
+    }
 }
 
 bool IsButton1Pressed(void)
 {
     uint8_t temp;
-    temp = Button1State & (1<<(BUTTON_DEBOUNCE_INTERVAL - 1));  // mask the lower bits
-    temp = temp ^ (1<<(BUTTON_DEBOUNCE_INTERVAL - 1));   // if this is zero, we have continuous button press
+    temp = Button1State & BUTTON_DEBOUNCE_MASK;  // mask the lower bits
+    temp = temp ^ BUTTON_DEBOUNCE_MASK;   // if this is zero, we have continuous button press
     return (0 == temp);
 }
 
 bool IsButton1Released(void)
 {
     uint8_t temp = 0;
-    temp = Button1State & (1<<(BUTTON_DEBOUNCE_INTERVAL - 1));  // If button released, should be all zeros
+    temp = Button1State & BUTTON_DEBOUNCE_MASK;  // If button released, should be all zeros
     return (0 == temp);
 }
+        
+void Button1Pressed_SetInterruptHandler(void (* InterruptHandler)(void))
+{
+    Button1Pressed_InterruptHandler = InterruptHandler;
+}
 
+void Button1PressedDefaultInterruptHandler(void)
+{
+    // Add default code here
+}
 
 /* *****************************************************************************
  End of File
