@@ -151,15 +151,15 @@ void LCD_Init(void)
     LCD_CmdWriteNoBF(0x38); // Configure the LCD in 8-bit mode, 2 line and 5x7 font
     __delay_ms(5);
     LCD_CmdWriteNoBF(0x38); // Configure the LCD in 8-bit mode, 2 line and 5x7 font
-    __delay_us(100);
+    __delay_us(700);
     LCD_CmdWriteNoBF(0x38); // Configure the LCD in 8-bit mode, 2 line and 5x7 font
-    __delay_us(100);
+    __delay_us(700);
     LCD_CmdWriteNoBF(0x10); // Cursor moves, right shift
-    __delay_us(60);
+    __delay_us(700);
     LCD_CmdWriteNoBF(0x0C); // Display On, Cursor off, Blink off
-    __delay_us(60);
+    __delay_us(700);
     LCD_CmdWriteNoBF(0x06); // Entry Mode set - Increment, no shift
-    __delay_us(60);
+    __delay_us(700);
     LCD_CmdWriteNoBF(0x01); // Clear Display
     __delay_ms(3);
 //    LCD_CmdWrite(0x0CF); // Display On and Cursor Off
