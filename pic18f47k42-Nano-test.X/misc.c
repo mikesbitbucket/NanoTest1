@@ -215,35 +215,64 @@ void DoHeartBeat()
     {
         Heartbeat_tmr = GetSysTick(); // get new time val
         LED_Toggle(); // Toggle error light
-//        if(LED_GetValue())
-//        {
-//            static uint8_t i=1;
-//            LCD_Clear();
-//            LCD_DisplayString("Hello World");
-//            LCD_SetPos(2,i);
-//            i++;
-//            if(i > 9) i=0;
-//            LCD_DisplayString("Indent Line");
-//        }
-//        else
-//        {
-//            //LCD_Clear();
-//        }
+        if(LED_GetValue())
+        {
+            static uint8_t i=1;
+            LCD_Clear();
+            LCD_DisplayString("Hello World");
+            LCD_SetPos(2,i);
+            i++;
+            if(i > 9) i=0;
+            LCD_DisplayString("Indent Line");
+        }
+        else
+        {
+            //LCD_Clear();
+        }
     } // End LED Beat
     
 }  // end heartbeat
     
-// LCD Shift Line
-void LCD_DisplayAndShift(void)
-{
-    static uint8_t i=1;
-    LCD_Clear();
-    LCD_DisplayString("Hello World");
-    LCD_SetPos(2,i);
-    i++;
-    if(i > 9) i=0;
-    LCD_DisplayString("Indent Line");
-}
+//    if(GetSysTick() != Heartbeat_tmr)  // this is simpler with 1 tick per heartbeat - Timer 0 is set to 10 ms
+//    {
+//        Heartbeat_tmr = GetSysTick(); // get new time val
+//        LED_Heartbeat_tmr++;
+//        if(LED_Heartbeat_tmr > LED_HEARTBEAT_INTERVAL)
+//        {
+//            LED_Toggle(); // Toggle error light
+//            LED_Heartbeat_tmr = 0;
+//        }
+//        HighVoltage_tmr++;
+//        if(HighVoltage_tmr > 100)  // Change duty every 1000ms
+//        {
+//            HighVoltage_tmr = 0;
+//            PWMDuty++;
+//            if(PWMDuty > 0x09) // Start back at 0
+//            {
+//                PWMDuty = 5;
+//            }
+//            PWM1S1P1L = PWMDuty;
+//            //PWM1_16BIT_SetSlice1Output1DutyCycleRegister(PWMDuty);
+//            PWM1_16BIT_LoadBufferRegisters(); // Load registers on next period
+//        } 
+//        if(HighVoltage_tmr > 100)
+//        {
+//            HighVoltage_tmr = 0;
+//            PWM1CON ^= 0x80; // Toggle enable bit   
+//            if(PWMDuty > 100)
+//            {
+//                PWMDuty = 200;  // Turn off for 2 seconds
+//                PWM1_16BIT_Disable();
+//            }
+//            else
+//            {
+//                PWMDuty = 1;  // Turn on for 10ms
+//                PWM1_16BIT_Enable();
+//            }
+            // PWM1CON ^= 0x80; // Toggle enable bit
+//        }
+        
+//    }  // end heartbeat
 
 /* *****************************************************************************
  End of File

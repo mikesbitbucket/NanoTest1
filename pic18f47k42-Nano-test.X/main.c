@@ -44,7 +44,6 @@
 #include "mcc_generated_files/mcc.h"
 #include "global_defs.h"
 #include "misc.h"
-#include "buttons.h"
 #include "lcd.h"
 
 uint8_t i,j;
@@ -66,8 +65,6 @@ void main(void)
     INTERRUPT_GlobalInterruptEnable();
 
     TMR0_SetInterruptHandler(IncSysTick);  // Register the Systimer Handler
-    Button1Pressed_SetInterruptHandler(Button1PressedDefaultInterruptHandler);
-    Button1Pressed_SetInterruptHandler(LCD_DisplayAndShift);
     TMR0_StartTimer(); // start the systimer
     
     __delay_ms(1000); // wait 1 second for USB to init and deliver power
@@ -87,7 +84,6 @@ void main(void)
         // Add your application code
         TEST_SetHigh();
         DoHeartBeat();
-        DoButtons();
         TEST_SetLow();
         i++;
         if(i>50)
@@ -96,10 +92,6 @@ void main(void)
             i=0;
         }
         
-        if(IsButton1Pressed())
-        {
-            i++;
-        }
     } // end while 1
 }
 /**

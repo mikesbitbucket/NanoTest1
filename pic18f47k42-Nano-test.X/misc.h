@@ -51,7 +51,6 @@ void IncSysTick(void);
 void ClearSysTick(void);
 uint16_t GetSysTick(void);
 void DoHeartBeat(void);
-void LCD_DisplayAndShift(void);
 
 #ifdef	__cplusplus
 }
