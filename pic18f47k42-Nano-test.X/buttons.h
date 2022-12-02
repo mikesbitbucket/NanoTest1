@@ -50,7 +50,9 @@ extern "C" {
 void DoButtons(void);
 void DoButton1(void);
 bool IsButton1Pressed(void);
-
+void (*Button1Pressed_InterruptHandler)(void);
+void Button1Pressed_SetInterruptHandler(void (Button1Pre)(void));
+void Button1PressedDefaultInterruptHandler(void);
 
 #ifdef	__cplusplus
 }

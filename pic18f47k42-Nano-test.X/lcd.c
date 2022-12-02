@@ -151,6 +151,7 @@ void LCD_Init(void)
     LCD_CmdWriteNoBF(0x38); // Configure the LCD in 8-bit mode, 2 line and 5x7 font
     __delay_ms(5);
     LCD_CmdWriteNoBF(0x38); // Configure the LCD in 8-bit mode, 2 line and 5x7 font
+    // 700 us delays might be needed for OLED display
     __delay_us(700);
     LCD_CmdWriteNoBF(0x38); // Configure the LCD in 8-bit mode, 2 line and 5x7 font
     __delay_us(700);
@@ -200,6 +201,7 @@ void LCD_Clear(void)
 {
     LCD_CmdWrite(0x00); //Clear the LCD
     LCD_CmdWrite(0x01); //Move the cursor to first position
+    LCD_CmdWrite(0x80); // need to move posisition to 0,0 for OLED
 }
 
 void LCD_Shift_Right(void)
